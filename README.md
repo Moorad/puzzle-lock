@@ -25,19 +25,19 @@ None yet
 
 ## Todo
 Sudoku:
-	- [x] Display a test board 
-	- [x] Add a cursor to the board
-	- [x] Add a simple move cursor system
-	- [ ] Add a simple placing system
-	- [ ] Add a move mode
-	- [ ] Add a place mode
-	- [ ] Add a board solution checker
-	- [ ] Implement board solving algorithm
-	- [ ] Randomly generate boards
-	- [ ] Figure out a way to generate a key from the set of sudoku boards
-	- [ ] Save sudoku boards that make up the key in a file
-	- [ ] Add a config file
-	- [ ] Encrypt/lock files
-	- [ ] Add timing system to unlock after a period of time
+- [x] Display a test board 
+- [x] Add a cursor to the board
+- [x] Add a simple move cursor system
+- [ ] Add a simple placing system
+- [ ] Add a move mode
+- [ ] Add a place mode
+- [ ] Add a board solution checker
+- [ ] Implement board solving algorithm
+- [ ] Randomly generate boards
+- [ ] Figure out a way to generate a key from the set of sudoku boards
+- [ ] Save sudoku boards that make up the key in a file
+- [ ] Add a config file
+- [ ] Encrypt/lock files
+- [ ] Add timing system to unlock after a period of time
 Other:
-	- [ ] Restructure files into folders
+- [ ] Restructure files into folders
