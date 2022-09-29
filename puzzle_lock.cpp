@@ -8,16 +8,15 @@ int main(void) {
 	system("clear");
 
 	sudokuBoard brd = getBoardExample1();
+	string error = "";
 	struct cursor pos = {0,0};
 	int value;
 
 	while (true) {
 		cout << "Sudoku puzzle 1:\n";
-		
-		if (!brd.checkInputValidity(pos.x, pos.y, value)) {
-			cout << colourise("Input was invalid\n", red, true);
-		} else {
-			brd.setCursor(pos.x, pos.y);
+		if (error != "") {
+			cout << colourise(error, red, true);
+			error = "";
 		}
 
 		draw(brd);
@@ -29,6 +28,17 @@ int main(void) {
 		cout << "value: ";
 		cin >> value;
 
+		if (!brd.checkInputValidity(pos.x, pos.y, value)) {
+			error = "Position is invalid\n";
+		} else {
+			brd.setCursor(pos.x, pos.y);
+		}
+
+		if (value >= 1 && value <= 9) {
+			brd.place(pos.x, pos.y, value);
+		} else if (value != -1) {
+			error = "Value is invalid\n";
+		}
 		
 
 		system("clear");

@@ -4,19 +4,10 @@
 using namespace std;
 
 sudokuBoard::sudokuBoard() {
-
-}
-
-sudokuBoard::sudokuBoard(int cells[9][9]) {
-	for (int i = 0; i < 9; i++) {
-		for (int j = 0; j < 9; j++) {
-			setCell(i, j, cells[i][j]);
-		}
-	}
 }
 
 bool sudokuBoard::checkInputValidity(int x, int y, int val) {
-	if (val > 8 || val < 0) {
+	if (val > 9 || val < 1) {
 		return false;
 	}
 
@@ -32,6 +23,11 @@ bool sudokuBoard::checkInputValidity(int x, int y, int val) {
 	return true;
 }
 
+void sudokuBoard::place(int x, int y, int val) {
+	if (isModifiable(x, y)) {
+		_cells[y][x] = val;
+	}
+}
 
 sudokuBoard getBoardExample1() {
 	sudokuBoard brd;
@@ -49,7 +45,7 @@ sudokuBoard getBoardExample1() {
 
 	for (int i = 0; i < 9; i++) {
 		for (int j = 0; j < 9; j++) {
-			brd.setCell(i, j, board[i][j]);
+			brd.setCell(j, i, board[i][j]);
 		}
 	}
 
@@ -89,7 +85,7 @@ void draw(sudokuBoard brd) {
 				cout << "|";
 			}
 
-			int cell = brd.getCell(i, j);
+			int cell = brd.getCell(j, i);
 
 			if (cursorX == j && cursorY == i) {
 				if (cell == -1) {
@@ -101,7 +97,11 @@ void draw(sudokuBoard brd) {
 				if (cell == -1) {
 					cout << "   ";
 				} else {
-					cout << " " << cell << " ";
+					if (brd.isModifiable(j, i)) {
+						cout << " " << colourise(colourise(to_string(cell), white, true), black, false)<< " ";
+					} else {
+						cout << " " << cell << " ";
+					}
 				}
 			}
 		}

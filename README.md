@@ -28,7 +28,7 @@ Sudoku:
 - [x] Display a test board 
 - [x] Add a cursor to the board
 - [x] Add a simple move cursor system
-- [ ] Add a simple placing system
+- [x] Add a simple placing system
 - [ ] Add a move mode
 - [ ] Add a place mode
 - [ ] Add a board solution checker
@@ -39,5 +39,6 @@ Sudoku:
 - [ ] Add a config file
 - [ ] Encrypt/lock files
 - [ ] Add timing system to unlock after a period of time
-Other:
+
+	Other:
 - [ ] Restructure files into folders
