@@ -28,8 +28,6 @@ class sudokuBoard {
 		void setCursor(int x, int y) { cursorPos.x = x; cursorPos.y = y; }
 		
 		void place(int x, int y, int val);
-		
-		bool checkInputValidity(int x, int y, int val);
 
 		bool checkFullBoard();
 		bool checkSolution();

@@ -39,8 +39,7 @@ Sudoku:
 - [ ] Add timing system to unlock after a period of time
 - [ ] Add a move mode
 - [ ] Add a place mode
-- [ ] Add a "Last successful operation" text at the top
-- [ ] Add proper error system
+- [x] Add proper feedback system (including errors)
 
 	Other:
 - [ ] Restructure files into folders

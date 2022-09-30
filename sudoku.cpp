@@ -6,23 +6,6 @@ using namespace std;
 sudokuBoard::sudokuBoard() {
 }
 
-bool sudokuBoard::checkInputValidity(int x, int y, int val) {
-	if (val > 9 || val < 1) {
-		return false;
-	}
-
-	if (x > 8 || x < 0 ||
-		y > 8 || y < 0) {
-			return false;
-	}
-
-	// if (getCell(x, y) != -1) {
-	// 	return false;
-	// }
-
-	return true;
-}
-
 void sudokuBoard::place(int x, int y, int val) {
 	if (isModifiable(x, y)) {
 		_cells[y][x].val = val;
@@ -126,7 +109,7 @@ sudokuBoard getBoardExample2() {
 	sudokuBoard brd;
 	int board[9][9] = {
 		{4,0,5,2,6,9,7,8,1},
-		{6,3,2,5,7,1,4,9,3},
+		{6,8,2,5,7,1,4,9,3},
 		{1,9,7,8,3,4,5,6,2},
 		{8,2,6,1,9,5,3,4,7},
 		{3,7,4,6,8,2,9,1,5},
