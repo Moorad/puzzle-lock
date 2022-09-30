@@ -29,9 +29,7 @@ Sudoku:
 - [x] Add a cursor to the board
 - [x] Add a simple move cursor system
 - [x] Add a simple placing system
-- [ ] Add a move mode
-- [ ] Add a place mode
-- [ ] Add a board solution checker
+- [x] Add a board solution checker
 - [ ] Implement board solving algorithm
 - [ ] Randomly generate boards
 - [ ] Figure out a way to generate a key from the set of sudoku boards
@@ -39,6 +37,10 @@ Sudoku:
 - [ ] Add a config file
 - [ ] Encrypt/lock files
 - [ ] Add timing system to unlock after a period of time
+- [ ] Add a move mode
+- [ ] Add a place mode
+- [ ] Add a "Last successful operation" text at the top
+- [ ] Add proper error system
 
 	Other:
 - [ ] Restructure files into folders

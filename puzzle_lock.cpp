@@ -7,7 +7,7 @@ using namespace std;
 int main(void) {
 	system("clear");
 
-	sudokuBoard brd = getBoardExample1();
+	sudokuBoard brd = getBoardExample2();
 	string error = "";
 	struct cursor pos = {0,0};
 	int value;
@@ -36,6 +36,11 @@ int main(void) {
 
 		if (value >= 1 && value <= 9) {
 			brd.place(pos.x, pos.y, value);
+
+			if (brd.checkFullBoard()) {
+				cout << brd.checkSolution() << "\n";
+				return 0;
+			}
 		} else if (value != -1) {
 			error = "Value is invalid\n";
 		}
