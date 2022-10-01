@@ -7,8 +7,8 @@ using namespace std;
 int main(void) {
 	system("clear");
 
-	sudokuBoard brd = getBoardExample2();
-	struct cursor pos = {0,0};
+	sudokuBoard brd = getBoardExample1();
+	struct Cursor pos = {0,0};
 	int value;
 
 	string error = "";	

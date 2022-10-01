@@ -30,7 +30,7 @@ Sudoku:
 - [x] Add a simple move cursor system
 - [x] Add a simple placing system
 - [x] Add a board solution checker
-- [ ] Implement board solving algorithm
+- [x] Implement board solving algorithm
 - [ ] Randomly generate boards
 - [ ] Figure out a way to generate a key from the set of sudoku boards
 - [ ] Save sudoku boards that make up the key in a file

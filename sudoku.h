@@ -1,4 +1,4 @@
-struct cursor {
+struct Cursor {
 	int x;
 	int y;
 };
@@ -11,7 +11,7 @@ struct Cell {
 class sudokuBoard {
 	private:
 		Cell _cells[9][9];
-		cursor cursorPos = {0,0};
+		Cursor cursorPos = {0,0};
 	
 	public:
 		sudokuBoard();
@@ -24,13 +24,15 @@ class sudokuBoard {
 
 		bool isModifiable(int x, int y) { return _cells[y][x].modifiable; }
 	
-		cursor getCursor() { return cursorPos; }
+		Cursor getCursor() { return cursorPos; }
 		void setCursor(int x, int y) { cursorPos.x = x; cursorPos.y = y; }
 		
 		void place(int x, int y, int val);
 
 		bool checkFullBoard();
 		bool checkSolution();
+		
+		bool solveBoard();
 };
 
 sudokuBoard getBoardExample1();

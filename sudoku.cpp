@@ -1,5 +1,6 @@
 #include "sudoku.h"
 #include "colour.h"
+#include <set>
 #include <iostream>
 using namespace std;
 
@@ -23,19 +24,6 @@ bool sudokuBoard::checkFullBoard() {
 
 	return true;
 }
-
-// Will be used for generating the solution later
-	// sudokuBoard defaultBrd;
-
-	// for (int i = 0; i < 9; i++) {
-	// 	for (int j = 0; j < 9; j++) {
-	// 		if (getCell(j, i).modifiable) {
-	// 			defaultBrd.setCell(j, i, 0);
-	// 		} else {
-	// 			defaultBrd.setCell(j, i, getCell(j, i).val);
-	// 		}
-	// 	}
-	// }
 
 bool sudokuBoard::checkSolution() {
 	// Checking 
@@ -80,6 +68,71 @@ bool sudokuBoard::checkSolution() {
 	}
 
 	return true;
+}
+
+// Backtracking algorithm
+// https://en.wikipedia.org/wiki/Sudoku_solving_algorithms
+bool sudokuBoard::solveBoard() {
+	set<int> possibilities = {1,2,3,4,5,6,7,8,9};
+
+	Cursor currEmpty;
+	for (int i = 0; i < 9; i++) {
+		for (int j = 0; j < 9; j++) {
+			if (getCell(j, i).val == 0) {
+				currEmpty = {j, i};
+				goto endloop;
+			}
+		}
+	}
+
+	return true;
+
+endloop:
+	// Horizontal, Vertical and 3x3 check possibilities
+	for (auto it = possibilities.begin(); it != possibilities.end();) {
+		bool found = false;
+		for (int i = 0; i < 9; i++) {
+			if (getCell(i, currEmpty.y).val == *it) {
+				possibilities.erase(it++);
+				found = true;
+				break;
+			}
+
+			if (getCell(currEmpty.x, i).val == *it) {
+				possibilities.erase(it++);
+				found = true;
+				break;
+			}
+
+			int multiX = currEmpty.x / 3;
+			int multiY = currEmpty.y / 3;
+			if (getCell((i % 3) + (3 * multiX), (i / 3) + (3 * multiY)).val == *it) {
+				possibilities.erase(it++);
+				found = true;
+				break;
+			}
+		}
+
+		if (!found) {
+			++it;
+		}
+	}
+
+	for (auto it = possibilities.begin(); it != possibilities.end(); ++it) {
+		place(currEmpty.x, currEmpty.y, *it);
+
+		if (solveBoard()) {
+			return true;
+		} else {
+			place(currEmpty.x, currEmpty.y, 0);
+		}
+	}
+	
+	return false;
+
+// Vertical
+
+// 3x3
 }
 
 sudokuBoard getBoardExample1() {
