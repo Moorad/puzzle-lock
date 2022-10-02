@@ -23,6 +23,7 @@ class sudokuBoard {
 		}
 
 		bool isModifiable(int x, int y) { return _cells[y][x].modifiable; }
+		bool isSafe(int x, int y, int val);
 	
 		Cursor getCursor() { return cursorPos; }
 		void setCursor(int x, int y) { cursorPos.x = x; cursorPos.y = y; }

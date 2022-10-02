@@ -13,6 +13,26 @@ void sudokuBoard::place(int x, int y, int val) {
 	}
 }
 
+bool sudokuBoard::isSafe(int x, int y, int val) {
+	for (int i = 0; i < 9; i++) {
+		if (getCell(i, y).val == val && i != x) {
+			return false;
+		}
+
+		if (getCell(x, i).val == val && i != y) {
+			return false;
+		}
+
+		int boxX = (i % 3) + (3 * (x / 3));
+		int boxY =(i / 3) + (3 * (y / 3));
+		if (getCell(boxX, boxY).val == val && boxX != x && boxY != y) {
+			return false;
+		}
+	}
+
+	return true;
+}
+
 bool sudokuBoard::checkFullBoard() {
 	for (int i = 0; i < 9; i++) {
 		for (int j = 0; j < 9; j++) {
@@ -26,43 +46,10 @@ bool sudokuBoard::checkFullBoard() {
 }
 
 bool sudokuBoard::checkSolution() {
-	// Checking 
-	
 	for (int i = 0; i < 9; i++) {
-		bool seen[9] = {false};
 		for (int j = 0; j < 9; j++) {
-			 if (seen[getCell(j, i).val - 1] == false) {
-				seen[getCell(j, i).val - 1] = true;
-			} else {
+			if (!isSafe(j, i, getCell(j, i).val)) {
 				return false;
-			}
-		}
-	}
-
-	// Checking columns
-	for (int i = 0; i < 9; i++) {
-		bool seen[9] = {false};
-		for (int j = 0; j < 9; j++) {
-			 if (seen[getCell(i, j).val - 1] == false) {
-				seen[getCell(i, j).val - 1] = true;
-			} else {
-				return false;
-			}
-		}
-	}
-
-	// Check 3x3s
-	for (int i = 0; i < 3; i++) {
-		for (int j = 0; j < 3; j++) {
-			bool seen[9] = {false};
-			for (int k = 0; k < 9; k++) {
-				int currX = (k % 3) + (3 * j);
-				int currY = (k / 3) + (3 * i);
-				if (seen[getCell(currX, currY).val - 1] == false) {
-					seen[getCell(currX, currY).val - 1] = true;
-				} else {
-					return false;
-				}
 			}
 		}
 	}
@@ -91,26 +78,9 @@ endloop:
 	// Horizontal, Vertical and 3x3 check possibilities
 	for (auto it = possibilities.begin(); it != possibilities.end();) {
 		bool found = false;
-		for (int i = 0; i < 9; i++) {
-			if (getCell(i, currEmpty.y).val == *it) {
-				possibilities.erase(it++);
-				found = true;
-				break;
-			}
-
-			if (getCell(currEmpty.x, i).val == *it) {
-				possibilities.erase(it++);
-				found = true;
-				break;
-			}
-
-			int multiX = currEmpty.x / 3;
-			int multiY = currEmpty.y / 3;
-			if (getCell((i % 3) + (3 * multiX), (i / 3) + (3 * multiY)).val == *it) {
-				possibilities.erase(it++);
-				found = true;
-				break;
-			}
+		if (!isSafe(currEmpty.x, currEmpty.y, *it)) {
+			possibilities.erase(it++);
+			found = true;
 		}
 
 		if (!found) {
@@ -129,10 +99,6 @@ endloop:
 	}
 	
 	return false;
-
-// Vertical
-
-// 3x3
 }
 
 sudokuBoard getBoardExample1() {
