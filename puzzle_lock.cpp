@@ -7,7 +7,7 @@ using namespace std;
 int main(void) {
 	system("clear");
 
-	sudokuBoard brd = getBoardExample2();
+	sudokuBoard brd = generateRandomBoard();
 	struct Cursor pos = {0,0};
 	int value;
 
@@ -20,7 +20,7 @@ int main(void) {
 			return 0;
 		}
 
-		cout << "Sudoku puzzle 1:\n";
+		cout << "Sudoku puzzle 1 (" << brd.getNumbOfClues() << " clues):\n";
 		if (error != "") {
 			cout << colourise(error, red, true) << "\n";
 			error = "";

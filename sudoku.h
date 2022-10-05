@@ -12,6 +12,7 @@ class sudokuBoard {
 	private:
 		Cell _cells[9][9];
 		Cursor cursorPos = {0,0};
+		int numOfClues; 
 	
 	public:
 		sudokuBoard();
@@ -28,6 +29,8 @@ class sudokuBoard {
 		Cursor getCursor() { return cursorPos; }
 		void setCursor(int x, int y) { cursorPos.x = x; cursorPos.y = y; }
 		
+		int getNumbOfClues() { return numOfClues; }
+
 		void place(int x, int y, int val);
 
 		bool checkFullBoard();
@@ -36,6 +39,8 @@ class sudokuBoard {
 		bool solveBoard();
 };
 
+sudokuBoard generateRandomBoard();
+sudokuBoard defaultBoard();
 sudokuBoard getBoardExample1();
 sudokuBoard getBoardExample2();
 
